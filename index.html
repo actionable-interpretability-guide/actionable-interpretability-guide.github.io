@@ -602,7 +602,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
       This growth is driven by the intuition that if we understand how models work, we should be able to make them safer, more reliable, and better aligned with what we actually want.
     </p>
     <p style="max-width: 65%;">
-      But here's the uncomfortable truth: <strong>most of this work hasn't translated into things used outside of interpretability research itself</strong>.  Insights rarely inform changes to models, training procedures, deployment decisions, or policy. Papers get published, methods get cited—but predominantly in a conceptual way. Most citations don't credit interpretability work for changes to training, architecture, or evaluation.<d-footnote>Mosbach et al. (2024) conducted an extensive analysis showing that while interpretability papers are frequently cited, their practical influence on downstream ML work remains limited.</d-footnote>
+      But here's the uncomfortable truth: <strong>most of this work hasn't translated into things used outside of interpretability research itself</strong>. Insights rarely inform changes to models, training procedures, deployment decisions, or policy. Papers get published, methods get cited—but predominantly in a conceptual way. Most citations don't credit interpretability work for changes to training, architecture, or evaluation.<d-footnote>Mosbach et al. (2024) conducted an extensive analysis showing that while interpretability papers are frequently cited, their practical influence on downstream ML work remains limited.</d-footnote>
     </p>
     <p style="max-width: 65%;">
       This has motivated growing calls to focus on clearly demonstrable outcomes beyond "understanding" itself. <strong>We argue that what is missing is not methods, but evaluation criteria</strong>: a shared framework for determining when interpretability research is successful from a practical, decision-oriented perspective.
@@ -660,13 +660,17 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   <div class="highlight-block yellow">
     <h4>What high actionability looks like in practice</h4>
     <ul>
-      <li>The discovery of <b>induction heads</b> in Transformers<d-footnote>Olsson, C. et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> directly influenced the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2023). Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</d-footnote></li>
+      <li>The discovery of <b>induction heads</b> in Transformers<d-footnote>Olsson, C. et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> directly influenced the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</d-footnote></li>
       <li><b>ReFT</b> was directly inspired by interpretability findings about how models represent concepts.<d-footnote>Wu, Z. et al. (2024). ReFT: Representation Finetuning for Language Models. NeurIPS 2024.</d-footnote></li>
       <li>Anthropic used internal <b>activation analysis</b> to audit Claude's safety behaviors.<d-footnote>Anthropic (2025). System Card: Claude Sonnet 4.5. Technical Report.</d-footnote></li>
       <li><b>Concept vectors</b> extracted from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human&ndash;AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote></li>
       <li>Geva et al.'s <b>key-value memory view</b> of transformer feed-forward layers<d-footnote>Geva, M., Schuster, R., Berant, J. &amp; Levy, O. (2021). Transformer Feed-Forward Layers Are Key-Value Memories. EMNLP 2021.</d-footnote> has directly shaped architecture design at frontier labs.<d-footnote>Cheng, X., Zeng, W., Dai, D. et al. (2026). Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models.</d-footnote><d-footnote>Sadhukhan, R., Cao, S., Dong, H. et al. (2026). STEM: Scaling Transformers with Embedding Modules.</d-footnote></li>
     </ul>
   </div>
+
+  <p>
+    For more examples, see the <a href="https://actionable-interpretability.github.io/posters/">posters from the ICML 2025 workshop</a>.
+  </p>
 
   <!-- ============================================ -->
   <h2 id="why-not-yet">Why Isn't Interpretability Actionable Yet?</h2>
@@ -707,7 +711,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
       <div class="domain-header"><div class="domain-icon">🧩</div>
       <h4>Problems Scaling Won't Fix</h4></div>
       <p>
-	  Certain failure modes persist or even worsen with model and data scale, including hallucinations, catastrophic forgetting, biases and adversarial brittleness.
+	  Certain failure modes persist or even worsen with model and data scale, including hallucinations, catastrophic forgetting, biases, and adversarial brittleness.
 		The persistence of these failures across model scales suggests they are fundamental to our current modeling paradigm rather than due to limited capacity.
 		Interpretability offers a path forward precisely because it can identify <em>why</em> models fail.
 	  </p>
@@ -732,7 +736,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
       <div class="domain-header"><div class="domain-icon">🏗</div>
       <h4>Architecture Design</h4></div>
       <p>
-		Current improvements emerge largely through trial and error---an inefficient, opaque process where success may not scale or transfer to new domains.
+		Current improvements emerge largely through trial and error&mdash;an inefficient, opaque process where success may not scale or transfer to new domains.
 		Interpretability could accelerate progress by narrowing the space of plausible architecture modifications, reducing both labor and compute required.
 	  </p>
     </div>
@@ -742,7 +746,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
       <p>
 	  The most natural role of interpretability is explaining model behavior, yet translating internal signals into meaningful concepts remains a critical bottleneck.
 	  In high-stakes domains like healthcare, a radiologist needs to know if an AI-assisted diagnosis depends on clinically relevant features, not which pixels activate;
-	  Automated methods that translate technical explanations into domain-appropriate, <strong>actionable</strong> concepts could unlock interpretability's core promise.
+	  automated methods that translate technical explanations into domain-appropriate, <strong>actionable</strong> concepts could unlock interpretability's core promise.
 	  </p>
     </div>
   </div>
@@ -751,7 +755,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   <h2 id="who-acts">Who Takes the “Action” in “Actionable”?</h2>
 
   <p>
-Different stakeholders have different capabilities and motivation. An interpretability work will become more actionable if it is explicit about its intended audience and the decisions it aims to support.  </p>
+Different stakeholders have different capabilities and motivation. An interpretability work becomes more actionable if it is explicit about its intended audience and the decisions it aims to support.</p>
 
   <table class="stakeholder-table">
     <thead>
@@ -824,35 +828,54 @@ Different stakeholders have different capabilities and motivation. An interpreta
             <span class="action-item-icon">🗂</span>
             <strong>Data Curation</strong>
           </div>
-          <p>Influence functions trace model performance back to individual training examples, identifying which help and which hurt. Removing detrimental robot demonstrations achieved state-of-the-art results with only 33% of the original data.<d-footnote>Agia, C. et al. (2025). CUPID: Curating Data Your Robot Loves with Influence Functions. CoRL 2025.</d-footnote> Similar techniques detect mislabeled examples and expose training data artifacts.<d-footnote>Koh, P.W. &amp; Liang, P. (2017). Understanding Black-Box Predictions via Influence Functions. ICML 2017.</d-footnote><d-footnote>Han, X., Wallace, B.C. &amp; Tsvetkov, Y. (2020). Explaining Black Box Predictions and Unveiling Data Artifacts through Influence Functions. ACL 2020.</d-footnote></p>
+          <p>Influence functions trace model performance back to individual training examples, identifying which help and which hurt.</p>
+          <ul class="action-list">
+            <li><strong>Detrimental data removal</strong>: Removing harmful robot demonstrations achieved state-of-the-art results with only 33% of the original data.<d-footnote>Agia, C. et al. (2025). CUPID: Curating Data Your Robot Loves with Influence Functions. CoRL 2025.</d-footnote></li>
+            <li><strong>Mislabel &amp; artifact detection</strong>: Similar techniques detect mislabeled examples and expose training data artifacts.<d-footnote>Koh, P.W. &amp; Liang, P. (2017). Understanding Black-Box Predictions via Influence Functions. ICML 2017.</d-footnote><d-footnote>Han, X., Wallace, B.C. &amp; Tsvetkov, Y. (2020). Explaining Black Box Predictions and Unveiling Data Artifacts through Influence Functions. ACL 2020.</d-footnote></li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">📥</span>
             <strong>Model Input</strong>
           </div>
-          <p>Interpretability can inform what inputs to provide. Building on the insight that transformers implement an internal optimizer for in-context learning<d-footnote>Akyürek, E. et al. (2023). What Learning Algorithm Is In-Context Learning? Investigations with Linear Models. ICLR 2023.</d-footnote>, influence functions have been used to identify which in-context demonstrations help versus harm performance.<d-footnote>Zhou, Z. et al. (2024). DETAIL: Task Demonstration Attribution for Interpretable In-Context Learning. NeurIPS 2024.</d-footnote></p>
+          <p>Interpretability can inform what inputs to provide.</p>
+          <ul class="action-list">
+            <li><strong>In-context demonstration selection</strong>: Building on the insight that transformers implement an internal optimizer for in-context learning<d-footnote>Akyürek, E. et al. (2023). What Learning Algorithm Is In-Context Learning? Investigations with Linear Models. ICLR 2023.</d-footnote>, influence functions identify which demonstrations help versus harm performance.<d-footnote>Zhou, Z. et al. (2024). DETAIL: Task Demonstration Attribution for Interpretable In-Context Learning. NeurIPS 2024.</d-footnote></li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">🧬</span>
             <strong>Training Decisions</strong>
           </div>
-          <p>Latent adversarial training perturbs internal representations to defend against unforeseen vulnerabilities, removing backdoors and improving robustness.<d-footnote>Casper, S. et al. (2024). Defending Against Unforeseen Failure Modes with Latent Adversarial Training. TMLR 2024.</d-footnote></p>
+          <p>Interpretability insights can guide how models are trained.</p>
+          <ul class="action-list">
+            <li><strong>Latent adversarial training</strong>: Perturbs internal representations to defend against unforeseen vulnerabilities, removing backdoors and improving robustness.<d-footnote>Casper, S. et al. (2024). Defending Against Unforeseen Failure Modes with Latent Adversarial Training. TMLR 2024.</d-footnote></li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">🎛</span>
             <strong>Direct Control</strong>
           </div>
-          <p>Interpretability can identify components responsible for specific behaviors, enabling targeted interventions. Model editing modifies weights to correct behaviors without full retraining<d-footnote>Meng, K. et al. (2022). Locating and Editing Factual Associations in GPT. NeurIPS 2022.</d-footnote><d-footnote>Fang, J. et al. (2025). AlphaEdit: Null-Space Constrained Model Editing for Language Models. ICLR 2025.</d-footnote>; runtime interventions steer activations along interpretable directions at inference time.<d-footnote>Li, K. et al. (2023). Inference-Time Intervention: Eliciting Truthful Answers from a Language Model. NeurIPS 2023.</d-footnote><d-footnote>Turner, A.M. et al. (2023). Steering Language Models with Activation Engineering.</d-footnote> Concept bottleneck models introduce human-defined concepts as intermediate representations, enabling expert-guided control.<d-footnote>Koh, P.W. et al. (2020). Concept Bottleneck Models. ICML 2020.</d-footnote></p>
+          <p>Interpretability can identify components responsible for specific behaviors, enabling targeted interventions.</p>
+          <ul class="action-list">
+            <li><strong>Model editing</strong>: Modifies weights to correct behaviors without full retraining.<d-footnote>Meng, K. et al. (2022). Locating and Editing Factual Associations in GPT. NeurIPS 2022.</d-footnote><d-footnote>Fang, J. et al. (2025). AlphaEdit: Null-Space Constrained Model Editing for Language Models. ICLR 2025.</d-footnote></li>
+            <li><strong>Runtime interventions</strong>: Steer activations along interpretable directions at inference time.<d-footnote>Li, K. et al. (2023). Inference-Time Intervention: Eliciting Truthful Answers from a Language Model. NeurIPS 2023.</d-footnote><d-footnote>Turner, A.M. et al. (2023). Steering Language Models with Activation Engineering.</d-footnote></li>
+            <li><strong>Concept bottleneck models</strong>: Introduce human-defined concepts as intermediate representations, enabling expert-guided control.<d-footnote>Koh, P.W. et al. (2020). Concept Bottleneck Models. ICML 2020.</d-footnote></li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">🛡</span>
             <strong>Safety</strong>
           </div>
-          <p>Interpretability supports removing or suppressing unsafe behaviors encoded in model weights. Concept erasure<d-footnote>Ravfogel, S. et al. (2020). Null It Out: Guarding Protected Attributes by Iterative Nullspace Projection. ACL 2020.</d-footnote> and machine unlearning<d-footnote>Gandikota, R. et al. (2024). Unified Concept Editing in Diffusion Models. WACV 2024.</d-footnote><d-footnote>Ashuach, T. et al. (2025). REVS: Unlearning Sensitive Information in Language Models via Rank Editing in the Vocabulary Space.</d-footnote> provide principled approaches for mitigating privacy risks and removing unwanted behaviors by identifying and neutralizing specific learned associations.</p>
+          <p>Interpretability supports removing or suppressing unsafe behaviors encoded in model weights.</p>
+          <ul class="action-list">
+            <li><strong>Concept erasure</strong>: Identifies and neutralizes specific learned associations to mitigate privacy risks and remove unwanted behaviors.<d-footnote>Ravfogel, S. et al. (2020). Null It Out: Guarding Protected Attributes by Iterative Nullspace Projection. ACL 2020.</d-footnote></li>
+            <li><strong>Machine unlearning</strong>: Removes specific knowledge or capabilities from trained models.<d-footnote>Gandikota, R. et al. (2024). Unified Concept Editing in Diffusion Models. WACV 2024.</d-footnote><d-footnote>Ashuach, T. et al. (2025). REVS: Unlearning Sensitive Information in Language Models via Rank Editing in the Vocabulary Space.</d-footnote></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -866,14 +889,23 @@ Different stakeholders have different capabilities and motivation. An interpreta
             <span class="action-item-icon">🩺</span>
             <strong>End User Decisions</strong>
           </div>
-          <p>Neuro-symbolic systems combining LLMs with rule-based expert systems provide the transparency radiologists need to confidently use AI while maintaining oversight.<d-footnote>Prenosil, G.A. et al. (2025). Neuro-Symbolic AI for Auditable Cognitive Information Extraction from Medical Reports. Communications Medicine.</d-footnote> Activation patching can reveal when models over-rely on patient demographics in clinical predictions.<d-footnote>Ahsan, H. et al. (2025). Elucidating Mechanisms of Demographic Bias in LLMs for Healthcare. EMNLP Findings 2025.</d-footnote> Uncertainty estimation from internal representations enables users to detect potential errors and decide when to trust model outputs.<d-footnote>Kadavath, S. et al. (2022). Language Models (Mostly) Know What They Know.</d-footnote></p>
+          <p>Interpretability helps end users decide when to trust, override, or act on model outputs.</p>
+          <ul class="action-list">
+            <li><strong>Neuro-symbolic systems</strong>: Combining LLMs with rule-based expert systems provides the transparency radiologists need to confidently use AI while maintaining oversight.<d-footnote>Prenosil, G.A. et al. (2025). Neuro-Symbolic AI for Auditable Cognitive Information Extraction from Medical Reports. Communications Medicine.</d-footnote></li>
+            <li><strong>Bias detection</strong>: Activation patching can reveal when models over-rely on patient demographics in clinical predictions.<d-footnote>Ahsan, H. et al. (2025). Elucidating Mechanisms of Demographic Bias in LLMs for Healthcare. EMNLP Findings 2025.</d-footnote></li>
+            <li><strong>Uncertainty estimation</strong>: Internal representations enable users to detect potential errors and decide when to trust model outputs.<d-footnote>Kadavath, S. et al. (2022). Language Models (Mostly) Know What They Know.</d-footnote></li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">🔀</span>
             <strong>Deployment Decisions</strong>
           </div>
-          <p>Interpretability enables predicting where models will fail. Internal mechanisms can identify out-of-distribution failures<d-footnote>Huang, J. et al. (2025). Internal Causal Mechanisms Robustly Predict Language Model Out-of-Distribution Behaviors.</d-footnote> and predict errors on unseen distributions<d-footnote>Li, V.R. et al. (2025). Can Interpretation Predict Behavior on Unseen Data?</d-footnote>, supporting routing decisions—whether to return a model's answer or escalate to alternatives. Uncertainty-based routing has achieved up to 98% cost reduction while matching GPT-4 performance.<d-footnote>Chen, L. et al. (2024). FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance. TMLR 2024.</d-footnote></p>
+          <p>Interpretability enables predicting where models will fail, supporting routing and escalation decisions.</p>
+          <ul class="action-list">
+            <li><strong>OOD failure prediction</strong>: Internal mechanisms can identify out-of-distribution failures<d-footnote>Huang, J. et al. (2025). Internal Causal Mechanisms Robustly Predict Language Model Out-of-Distribution Behaviors.</d-footnote> and predict errors on unseen distributions.<d-footnote>Li, V.R. et al. (2025). Can Interpretation Predict Behavior on Unseen Data?</d-footnote></li>
+            <li><strong>Uncertainty-based routing</strong>: Deciding whether to return a model's answer or escalate to alternatives has achieved up to 98% cost reduction while matching GPT-4 performance.<d-footnote>Chen, L. et al. (2024). FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance. TMLR 2024.</d-footnote></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -887,21 +919,33 @@ Different stakeholders have different capabilities and motivation. An interpreta
             <span class="action-item-icon">📜</span>
             <strong>Policy &amp; Regulation</strong>
           </div>
-          <p>Interpretability requirements are increasingly embedded in regulation. The EU AI Act mandates explainability for high-risk AI systems<d-footnote>ArtificialIntelligenceAct.eu (2025). Article 86: Right to Explanation of Individual Decision-Making.</d-footnote>, and GDPR restricts automated decision-making with significant effects, requiring safeguards including the right to human intervention.<d-footnote>European Union (2016). GDPR, Article 22: Automated Individual Decision-Making, Including Profiling.</d-footnote> A central open challenge is whether interpretability can enable credible verification of the absence of dangerous mechanisms, even with limited access to proprietary models.</p>
+          <p>Interpretability requirements are increasingly embedded in regulation.</p>
+          <ul class="action-list">
+            <li><strong>EU AI Act</strong>: Mandates explainability for high-risk AI systems.<d-footnote>ArtificialIntelligenceAct.eu (2025). Article 86: Right to Explanation of Individual Decision-Making.</d-footnote></li>
+            <li><strong>GDPR</strong>: Restricts automated decision-making with significant effects, requiring safeguards including the right to human intervention.<d-footnote>European Union (2016). GDPR, Article 22: Automated Individual Decision-Making, Including Profiling.</d-footnote></li>
+            <li><strong>Verification challenge</strong>: A central open question is whether interpretability can enable credible verification of the absence of dangerous mechanisms, even with limited access to proprietary models.</li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">🧠</span>
             <strong>Learning from Superhuman Models</strong>
           </div>
-          <p>When models exceed human expertise, interpretability becomes a mechanism for transferring knowledge from AI back to humans. Concept vectors from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human–AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote> Similar approaches applied to biological foundation models have identified scientifically relevant structure in model representations.<d-footnote>Gorton, L. et al. (2025). Interpreting Evo 2: Arc Institute's Next-Generation Genomic Foundation Model. Goodfire Research.</d-footnote></p>
+          <p>When models exceed human expertise, interpretability becomes a mechanism for transferring knowledge from AI back to humans.</p>
+          <ul class="action-list">
+            <li><strong>AlphaZero concept vectors</strong>: Surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human–AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote></li>
+            <li><strong>Biological foundation models</strong>: Similar approaches have identified scientifically relevant structure in model representations.<d-footnote>Gorton, L. et al. (2025). Interpreting Evo 2: Arc Institute's Next-Generation Genomic Foundation Model. Goodfire Research.</d-footnote></li>
+          </ul>
         </div>
         <div class="action-item">
           <div class="action-item-header">
             <span class="action-item-icon">🏗</span>
             <strong>Development of Future Models</strong>
           </div>
-          <p>Interpretability can shift architecture design from trial-and-error toward principled engineering. The discovery of induction heads in Transformers<d-footnote>Olsson, C. et al. (2022). In-Context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> provided a mechanism for in-context learning that traditional state-space models lacked, directly influencing the selective state-space design of the Mamba architecture.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. COLM 2024.</d-footnote></p>
+          <p>Interpretability can shift architecture design from trial-and-error toward principled engineering.</p>
+          <ul class="action-list">
+            <li><strong>Induction heads → Mamba</strong>: The discovery of induction heads in Transformers<d-footnote>Olsson, C. et al. (2022). In-Context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> provided a mechanism for in-context learning that traditional state-space models lacked, directly influencing the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. COLM 2024.</d-footnote></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1073,14 +1117,14 @@ Different stakeholders have different capabilities and motivation. An interpreta
 <d-appendix>
   <h3>Citation</h3>
   <!-- <p>For citation:</p> -->
-  <pre style="background: #f3f4f6; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;">@article{orgad2025actionable,
+  <pre style="background: #f3f4f6; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;">@article{orgad2026actionable,
   title     = {Interpretability Can Be Actionable},
   author    = {Orgad, Hadas and Barez, Fazl and Haklay, Tal
                and Lee, Isabelle and Mosbach, Marius
                and Reusch, Anja and Saphra, Naomi
                and Wallace, Byron C. and Wiegreffe, Sarah
                and Wong, Eric and Tenney, Ian and Geva, Mor},
-  year      = {2025},
+  year      = {2026},
   url       = {https://actionable-interpretability.github.io}
 }</pre>
 </d-appendix>
