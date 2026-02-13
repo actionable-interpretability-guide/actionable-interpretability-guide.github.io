@@ -131,10 +131,14 @@
       padding: 0.6rem 1rem;
       background: #f9fafb;
       border-radius: 8px;
-      cursor: pointer;
       transition: background 0.2s ease, box-shadow 0.2s ease;
       position: relative;
     }
+    .checklist-item .checklist-number,
+    .checklist-item .checklist-text > strong,
+    .checklist-item .checklist-text > span:not(.checklist-detail),
+    .checklist-item .checklist-expand-icon { cursor: pointer; }
+    .checklist-item .checklist-detail { cursor: text; }
     .checklist-item:hover { background: #dbeafe; }
     .checklist-item.expanded { background: #dbeafe; box-shadow: 0 2px 8px rgba(37,99,235,0.1); }
 
@@ -242,8 +246,8 @@
 
     /* ── Barrier blocks ── */
     .barrier-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
       margin: 1.25rem 0;
     }
@@ -254,7 +258,7 @@
       background: #faf6f6;
     }
     .barrier-block h4 { margin: 0 0 0.3rem; font-size: 0.95rem; color: #6b3a3a; font-weight: 700; }
-    .barrier-block p { margin: 0; font-size: 0.88rem; color: #5c4444; line-height: 1.5; }
+    .barrier-block p { margin: 0; font-size: inherit; color: var(--color-text); line-height: 1.8; }
 
     /* ── Evaluation criteria ── */
     .eval-grid {
@@ -316,6 +320,8 @@
     .highlight-block ul { list-style: none; padding-left: 0; margin: 0; }
     .highlight-block ul li { padding-left: 1.6em; position: relative; margin-bottom: 0.4rem; }
     .highlight-block ul li::before { content: "💡"; position: absolute; left: 0; }
+    .highlight-block ul.plain-list li { padding-left: 0; }
+    .highlight-block ul.plain-list li::before { content: none; }
     .highlight-block.yellow { background: #fdfcf3; border-left: 4px solid #d4b44a; }
     .highlight-block strong { display: block; margin-bottom: 4px; }
 
@@ -358,9 +364,10 @@
       border: 1.5px solid var(--color-border);
       border-radius: 12px;
       overflow: hidden;
-      cursor: pointer;
       transition: box-shadow 0.2s ease;
     }
+    .actions-zippy .zippy-header { cursor: pointer; }
+    .actions-zippy .zippy-body { cursor: text; }
     .actions-zippy:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 
     .zippy-header {
@@ -608,6 +615,10 @@
   <!-- TOC scroll anchor -->
   <div id="toc-anchor"></div>
 
+  <div class="companion-note" style="background: #f9fafb; border: 1px solid var(--color-border); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0 1rem; font-size: 1.00rem; line-height: 1.7; color: var(--color-text);">
+    This post is a companion to our paper. It covers the key ideas; see the full paper for the complete analysis and references. Our framing draws in part on discussions from the <a href="https://icml.cc/virtual/2025/workshop/39962">ICML 2025 Workshop on Actionable Interpretability</a>, which aimed to foster dialogue on leveraging interpretability insights to drive tangible advancements in AI.
+  </div>
+
   <div class="hero-callout">
 
 Interpretability has grown rapidly as a research area, but most of it hasn't led to practical improvements in models, deployments, or policy. This post summarizes our position arguing that <strong>actionability</strong>—the extent to which insights enable concrete decisions and interventions—should become a core evaluation criterion for interpretability work.
@@ -617,7 +628,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
 
   </div>
 
-  <aside>This post is a companion to our paper. It covers the key ideas; see the full paper for the complete analysis and references. Our framing draws in part on discussions from the <a href="https://icml.cc/virtual/2025/workshop/39962">ICML 2025 Workshop on Actionable Interpretability</a>, which aimed to foster dialogue on leveraging interpretability insights to drive tangible advancements in AI.</aside>
+
 
 
   <!-- ============================================ -->
@@ -691,8 +702,8 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   </p>
 
   <div class="highlight-block yellow">
-    <h4>What high actionability looks like in practice</h4>
-    <ul>
+    <h4>💡 What high actionability looks like in practice</h4>
+    <ul class="plain-list" style="list-style: disc; padding-left: 1.4em;">
       <li>The discovery of <b>induction heads</b> in Transformers<d-footnote>Olsson, C. et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> directly influenced the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</d-footnote></li>
       <li><b>ReFT</b> was directly inspired by interpretability findings about how models represent concepts.<d-footnote>Wu, Z. et al. (2024). ReFT: Representation Finetuning for Language Models. NeurIPS 2024.</d-footnote></li>
       <li>Anthropic used internal <b>activation analysis</b> to audit Claude's safety behaviors.<d-footnote>Anthropic (2025). System Card: Claude Sonnet 4.5. Technical Report.</d-footnote></li>
@@ -732,6 +743,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   <h2 id="five-domains">Five Domains Where Interpretability Has Real Leverage</h2>
 
   <p>Where should the field focus? We identify five domains where interpretability provides a fundamental advantage—where answering <em>why</em> questions about models unlocks improvements that other approaches cannot.</p>
+  <p>We further discuss these opportunities in <a href="paper.pdf" target="_blank">Section 4 of the paper</a></p>
 
   <figure style="margin: 1.5rem 0 2rem; text-align: center;">
     <img src="opportunities.png" alt="Five opportunities for actionable interpretability: Problems scaling does not solve, Alignment, Translation to meaningful concepts, Architectural design, and Surgical interventions" style="max-width: 100%; border-radius: 8px;">
@@ -779,7 +791,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
       <p>
 	  The most natural role of interpretability is explaining model behavior, yet translating internal signals into meaningful concepts remains a critical bottleneck.
 	  In high-stakes domains like healthcare, a radiologist needs to know if an AI-assisted diagnosis depends on clinically relevant features, not which pixels activate;
-	  automated methods that translate technical explanations into domain-appropriate, <strong>actionable</strong> concepts could unlock interpretability's core promise.
+	  automated methods that translate technical explanations into domain-appropriate, actionable concepts could unlock interpretability's core promise.
 	  </p>
     </div>
   </div>
@@ -826,6 +838,10 @@ Different stakeholders have different capabilities and motivation. An interpreta
       </tr>
     </tbody>
   </table>
+  
+  <p>
+  These actors rarely operate in isolation. A clinician's feedback about unreliable explanations may reveal failure modes to engineers. A policymaker's compliance requirements may drive developers toward specific mitigations.
+  </p>
 
   <!-- ============================================ -->
   <h2 id="what-actions">What Actions Does Interpretability Enable?</h2>
@@ -835,7 +851,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
   <!-- Expandable Actions Sections -->
   <div class="actions-zippy-group">
 
-    <div class="actions-zippy" onclick="toggleZippy(this)">
+    <div class="actions-zippy" onclick="toggleZippy(this, event)">
       <div class="zippy-header">
         <span class="zippy-icon-left">⚙️</span>
         <span class="zippy-title">Modify Model Output</span>
@@ -863,7 +879,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
       </div>
     </div>
 
-    <div class="actions-zippy" onclick="toggleZippy(this)">
+    <div class="actions-zippy" onclick="toggleZippy(this, event)">
       <div class="zippy-header">
         <span class="zippy-icon-left">🚀</span>
         <span class="zippy-title">Deployment &amp; Use</span>
@@ -891,7 +907,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
       </div>
     </div>
 
-    <div class="actions-zippy" onclick="toggleZippy(this)">
+    <div class="actions-zippy" onclick="toggleZippy(this, event)">
       <div class="zippy-header">
         <span class="zippy-icon-left">🔮</span>
         <span class="zippy-title">Shape Future Practice</span>
@@ -996,7 +1012,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
     <h3>📋 Actionability Checklist for Interpretability Research</h3>
     <p style="font-size: 0.88rem; color: #6b7280; margin-top: -0.5rem; margin-bottom: 1rem;">Click on each step to learn more.</p>
 
-    <div class="checklist-item" onclick="toggleChecklist(this)">
+    <div class="checklist-item" onclick="toggleChecklist(this, event)">
       <div class="checklist-number">1</div>
       <div class="checklist-text">
         <strong>Define a clear goal</strong>
@@ -1008,19 +1024,19 @@ Different stakeholders have different capabilities and motivation. An interpreta
       <div class="checklist-expand-icon">▼</div>
     </div>
 
-    <div class="checklist-item" onclick="toggleChecklist(this)">
+    <div class="checklist-item" onclick="toggleChecklist(this, event)">
       <div class="checklist-number">2</div>
       <div class="checklist-text">
         <strong>Identify your audience</strong>
         <span>Communicate insights according to different stakeholders: developers, practitioners, policymakers.</span>
         <div class="checklist-detail">
-          Although academic papers are primarily read by researchers, their insights may be acted upon by very different stakeholders. <em>AI developers</em> need data-point level analysis and behavior modification methods. <em>Domain experts</em> like clinicians need explanations tied to domain-specific features. <em>Policymakers</em> need system-level summaries. Each audience requires different framing, language, and levels of abstraction. An interpretability work becomes more actionable when it is explicit about who can act on its findings and how.
+          Your interpretability insights may be acted upon by very different stakeholders. <em>AI developers</em> need data-point level analysis and behavior modification methods. <em>Domain experts</em> like clinicians need explanations tied to domain-specific features. <em>Policymakers</em> need system-level summaries. Each audience requires different framing, language, and levels of abstraction. An interpretability work becomes more actionable when it is explicit about who can act on its findings and how.
         </div>
       </div>
       <div class="checklist-expand-icon">▼</div>
     </div>
 
-    <div class="checklist-item" onclick="toggleChecklist(this)">
+    <div class="checklist-item" onclick="toggleChecklist(this, event)">
       <div class="checklist-number">3</div>
       <div class="checklist-text">
         <strong>Propose concrete actions</strong>
@@ -1032,7 +1048,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
       <div class="checklist-expand-icon">▼</div>
     </div>
 
-    <div class="checklist-item" onclick="toggleChecklist(this)">
+    <div class="checklist-item" onclick="toggleChecklist(this, event)">
       <div class="checklist-number">4</div>
       <div class="checklist-text">
         <strong>Validate empirically</strong>
@@ -1044,7 +1060,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
       <div class="checklist-expand-icon">▼</div>
     </div>
 
-    <div class="checklist-item" onclick="toggleChecklist(this)">
+    <div class="checklist-item" onclick="toggleChecklist(this, event)">
       <div class="checklist-number">5</div>
       <div class="checklist-text">
         <strong>Evaluate in realistic settings</strong>
@@ -1056,7 +1072,7 @@ Different stakeholders have different capabilities and motivation. An interpreta
       <div class="checklist-expand-icon">▼</div>
     </div>
 
-    <div class="checklist-item" onclick="toggleChecklist(this)">
+    <div class="checklist-item" onclick="toggleChecklist(this, event)">
       <div class="checklist-number">6</div>
       <div class="checklist-text">
         <strong>Use actionable success criteria</strong>
@@ -1102,7 +1118,13 @@ Different stakeholders have different capabilities and motivation. An interpreta
 
 <!-- CHECKLIST EXPAND/COLLAPSE -->
 <script>
-  function toggleChecklist(item) {
+  function toggleChecklist(item, e) {
+    // Don't toggle if user is selecting text
+    var sel = window.getSelection();
+    if (sel && sel.toString().length > 0) return;
+    // Don't toggle if click was inside the expanded detail area
+    var detail = item.querySelector('.checklist-detail');
+    if (detail && e && detail.contains(e.target)) return;
     var wasExpanded = item.classList.contains('expanded');
     // Collapse all items first
     document.querySelectorAll('.checklist-item.expanded').forEach(function(el) {
@@ -1117,7 +1139,13 @@ Different stakeholders have different capabilities and motivation. An interpreta
 
 <!-- ACTIONS ZIPPIES -->
 <script>
-  function toggleZippy(el) {
+  function toggleZippy(el, e) {
+    // Don't toggle if user is selecting text
+    var sel = window.getSelection();
+    if (sel && sel.toString().length > 0) return;
+    // Don't toggle if click was inside the expanded body area
+    var body = el.querySelector('.zippy-body');
+    if (body && e && body.contains(e.target)) return;
     var wasExpanded = el.classList.contains('expanded');
     // Collapse all zippies first
     document.querySelectorAll('.actions-zippy.expanded').forEach(function(z) {
