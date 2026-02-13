@@ -198,17 +198,14 @@
     .domain-card h4 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
     .domain-card p { font-size: 0.88rem; color: var(--color-text-light); line-height: 1.5; margin: 0; }
 
-    .domain-card:nth-child(1) { background: var(--color-highlight-yellow); border-color: #fde68a; }
-    .domain-card:nth-child(2) { background: var(--color-highlight-green); border-color: #86efac; }
-    .domain-card:nth-child(3) { background: var(--color-highlight-blue); border-color: #93c5fd; }
-    .domain-card:nth-child(4) { background: var(--color-highlight-purple); border-color: #c4b5fd; }
-    .domain-card:nth-child(5) { background: var(--color-highlight-orange); border-color: #fdba74; }
+    .domain-card { background: #f9fafb; border-color: #e5e7eb; }
+    .domain-card h4 { color: var(--color-text); }
 
     /* ── Interactive Dimensions diagram (from index 10) ── */
     .dimensions-container { display: flex; gap: 24px; align-items: stretch; margin: 1.5rem 0; }
     @media (max-width: 700px) { .dimensions-container { flex-direction: column; } }
 
-    .dimension-axis { flex: 1; border-radius: 12px; padding: 20px; text-align: center; }
+    .dimension-axis { flex: 1; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #e5e7eb; }
     .dimension-axis h4 { margin: 0 0 10px; font-size: 1.05rem; }
     .dimension-scale { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; font-size: 0.82rem; color: var(--color-text-light); }
     .dimension-bar { height: 8px; border-radius: 4px; margin: 6px 0; }
@@ -240,11 +237,11 @@
     .barrier-block {
       padding: 1.1rem;
       border-radius: 10px;
-      border: 1px solid #fca5a5;
-      background: linear-gradient(135deg, #fef2f2, #fff1f2);
+      border: 1px solid #e8c4c4;
+      background: #faf6f6;
     }
-    .barrier-block h4 { margin: 0 0 0.3rem; font-size: 0.95rem; color: #991b1b; font-weight: 700; }
-    .barrier-block p { margin: 0; font-size: 0.88rem; color: #7f1d1d; line-height: 1.5; }
+    .barrier-block h4 { margin: 0 0 0.3rem; font-size: 0.95rem; color: #6b3a3a; font-weight: 700; }
+    .barrier-block p { margin: 0; font-size: 0.88rem; color: #5c4444; line-height: 1.5; }
 
     /* ── Evaluation criteria ── */
     .eval-grid {
@@ -272,20 +269,20 @@
       margin-bottom: 6px;
     }
 
-    /* Actions that Modify Outputs — blue */
-    .eval-card.eval-modify { background: #eff6ff; border-left-color: #2563eb; }
-    .eval-card.eval-modify h4 { color: #1e40af; }
-    .eval-card.eval-modify .eval-category { background: #dbeafe; color: #1e40af; }
+    /* Actions that Modify Outputs — muted blue */
+    .eval-card.eval-modify { background: #f7f9fc; border-left-color: #6b8fc7; }
+    .eval-card.eval-modify h4 { color: #3b5a8a; }
+    .eval-card.eval-modify .eval-category { background: #e8eef6; color: #3b5a8a; }
 
-    /* Actions about Deployment — green */
-    .eval-card.eval-deploy { background: #f0fdf4; border-left-color: #16a34a; }
-    .eval-card.eval-deploy h4 { color: #166534; }
-    .eval-card.eval-deploy .eval-category { background: #dcfce7; color: #166534; }
+    /* Actions about Deployment — muted green */
+    .eval-card.eval-deploy { background: #f7faf8; border-left-color: #6aab7e; }
+    .eval-card.eval-deploy h4 { color: #3a6b4a; }
+    .eval-card.eval-deploy .eval-category { background: #e6f0ea; color: #3a6b4a; }
 
-    /* Actions Shaping Future Practices — purple */
-    .eval-card.eval-future { background: #faf5ff; border-left-color: #9333ea; }
-    .eval-card.eval-future h4 { color: #6b21a8; }
-    .eval-card.eval-future .eval-category { background: #f3e8ff; color: #6b21a8; }
+    /* Actions Shaping Future Practices — muted purple */
+    .eval-card.eval-future { background: #f9f7fc; border-left-color: #9a7ec0; }
+    .eval-card.eval-future h4 { color: #5e4580; }
+    .eval-card.eval-future .eval-category { background: #ede8f4; color: #5e4580; }
 
     /* ── Criteria list ── */
     .criteria-list { list-style: none; padding: 0; margin: 0.5rem 0 0; }
@@ -300,7 +297,7 @@
       font-size: 0.95rem;
       line-height: 1.65;
     }
-    .highlight-block.yellow { background: var(--color-highlight-yellow); border-left: 4px solid #eab308; }
+    .highlight-block.yellow { background: #fdfcf3; border-left: 4px solid #d4b44a; }
     .highlight-block strong { display: block; margin-bottom: 4px; }
 
     /* ── Author block ── */
@@ -330,59 +327,58 @@
       .problem-figure { width: min(300px, 28vw) !important; right: -40px !important; }
     }
 
-    /* ── Interactive Actions Framework ── */
-    .actions-framework {
-      margin: 1.5rem 0 2rem;
-      border: 1.5px solid var(--color-border);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
-    .actions-tabs {
+    /* ── Expandable Actions Zippies ── */
+    .actions-zippy-group {
       display: flex;
-      border-bottom: 1.5px solid var(--color-border);
-      background: #f9fafb;
+      flex-direction: column;
+      gap: 10px;
+      margin: 1.5rem 0 2rem;
     }
-    .actions-tab {
-      flex: 1;
+
+    .actions-zippy {
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+    }
+    .actions-zippy:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+    .zippy-header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 12px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.9rem;
+      gap: 10px;
+      padding: 14px 18px;
+      background: #f9fafb;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: var(--color-text-light);
-      transition: all 0.2s ease;
-      border-bottom: 3px solid transparent;
-      position: relative;
+      color: var(--color-text);
+      transition: background 0.2s ease;
     }
-    .actions-tab:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 20%;
-      height: 60%;
-      width: 1px;
-      background: var(--color-border);
-    }
-    .actions-tab:hover { background: #f0f4ff; color: var(--color-accent); }
-    .actions-tab.active {
-      color: var(--color-accent);
-      border-bottom-color: var(--color-accent);
-      background: #fff;
-    }
-    .tab-icon { font-size: 1.1rem; }
+    .actions-zippy:hover .zippy-header { background: #f0f4ff; }
+    .actions-zippy.expanded .zippy-header { background: #fff; border-bottom: 1px solid var(--color-border); }
 
-    .actions-panel {
-      display: none;
-      padding: 22px 26px 26px;
+    .zippy-icon-left { font-size: 1.1rem; }
+    .zippy-title { flex: 1; }
+    .zippy-chevron {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      transition: transform 0.3s ease, color 0.2s ease;
+    }
+    .actions-zippy:hover .zippy-chevron { color: var(--color-accent); }
+    .actions-zippy.expanded .zippy-chevron { transform: rotate(180deg); color: var(--color-accent); }
+
+    .zippy-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0 22px;
       background: #fff;
     }
-    .actions-panel.active { display: block; }
+    .actions-zippy.expanded .zippy-body {
+      max-height: 2000px;
+      padding: 18px 22px 22px;
+    }
     .panel-desc {
       font-size: 0.92rem;
       color: var(--color-text-light);
@@ -421,16 +417,16 @@
     .panel-aside {
       margin-top: 16px;
       padding: 10px 14px;
-      background: var(--color-highlight-yellow);
+      background: #f3f4f6;
       border-radius: 8px;
       font-size: 0.85rem;
       line-height: 1.6;
-      color: #92400e;
+      color: var(--color-text-light);
     }
 
     @media (max-width: 600px) {
-      .actions-tab { flex-direction: column; gap: 4px; padding: 10px 6px; font-size: 0.78rem; }
-      .actions-panel { padding: 16px; }
+      .actions-zippy .zippy-header { padding: 12px 14px; font-size: 0.88rem; }
+      .actions-zippy.expanded .zippy-body { padding: 14px 16px 18px; }
       .action-items-grid { grid-template-columns: 1fr; }
     }
 
@@ -473,6 +469,42 @@
     .author-note:hover .author-note-content {
       display: block;
     }
+
+    /* ── Paper CTA banner ── */
+    .paper-cta {
+      margin: 2.5rem 0 1.5rem;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f0f7ff, #f8fbff);
+      overflow: hidden;
+    }
+    .paper-cta-content {
+      padding: 1.5rem 2rem;
+    }
+    .paper-cta-content strong {
+      display: block;
+      font-size: 1.05rem;
+      color: #1e3a5f;
+      margin-bottom: 0.4rem;
+    }
+    .paper-cta-content p {
+      font-size: 0.9rem;
+      color: #4b6a8a;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
+    .paper-cta-button {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      background: #2563eb;
+      color: #fff !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .paper-cta-button:hover { background: #1d4ed8; }
 
     html { scroll-behavior: smooth; }
     @media print { .toc-wrapper { display: none; } }
@@ -593,24 +625,24 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   <h3 id="two-dimensions">Two Dimensions of Actionability</h3>
 
   <div class="dimensions-container">
-    <div class="dimension-axis" style="background: var(--color-highlight-blue);">
+    <div class="dimension-axis" style="background: #f9fafb; border: 1px solid #e5e7eb;">
       <h4>📐 Concreteness</h4>
       <p style="font-size: 0.9rem; color: var(--color-text-light); margin: 0;">How specific is the proposed action?</p>
       <div class="dimension-scale">
         <span>Vague</span>
-        <span style="flex:1; margin: 0 10px;"><div class="dimension-bar" style="background: linear-gradient(to right, #bfdbfe, #2563eb);"></div></span>
+        <span style="flex:1; margin: 0 10px;"><div class="dimension-bar" style="background: linear-gradient(to right, #d1d5db, #2563eb);"></div></span>
         <span>Precise</span>
       </div>
       <p style="font-size: 0.82rem; color: var(--color-text-light); margin-top: 4px;">
         &ldquo;could inform safety research&rdquo; &rarr; exact implementation with code
       </p>
     </div>
-    <div class="dimension-axis" style="background: var(--color-highlight-green);">
+    <div class="dimension-axis" style="background: #f9fafb; border: 1px solid #e5e7eb;">
       <h4>✅ Validation</h4>
       <p style="font-size: 0.9rem; color: var(--color-text-light); margin: 0;">Has anyone actually tested it?</p>
       <div class="dimension-scale">
         <span>Untested</span>
-        <span style="flex:1; margin: 0 10px;"><div class="dimension-bar" style="background: linear-gradient(to right, #bbf7d0, #16a34a);"></div></span>
+        <span style="flex:1; margin: 0 10px;"><div class="dimension-bar" style="background: linear-gradient(to right, #d1d5db, #2563eb);"></div></span>
         <span>Validated</span>
       </div>
       <p style="font-size: 0.82rem; color: var(--color-text-light); margin-top: 4px;">
@@ -620,19 +652,19 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   </div>
 
   <p>
-    Most existing work clusters in the low-concreteness, low-validation region—providing directional insights that motivate future work, but without articulating or testing specific actions. The field needs more work at the high end of both axes: precise, validated actions informed by interpretability.
+    Most existing work clusters in the low-concreteness, low-validation region—providing directional insights that motivate future work, but without articulating or testing specific actions. The field needs more work at the high end of both axes: precise, validated actions informed by interpretability. In the paper, we <a href="paper.pdf" target="_blank">map existing work onto this space</a> to show where current contributions land and what the gaps look like.
   </p>
 
   <div class="highlight-block yellow">
     <strong>💡 What high actionability looks like in practice</strong>
      The discovery of induction heads in Transformers<d-footnote>Olsson, C. et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> directly influenced the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2023). Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</d-footnote> ReFT was directly inspired by interpretability findings about how models represent concepts.<d-footnote>Wu, Z. et al. (2024). ReFT: Representation Finetuning for Language Models. NeurIPS 2024.</d-footnote> Anthropic used internal activation analysis to audit Claude's safety behaviors.<d-footnote>Anthropic (2025). System Card: Claude Sonnet 4.5. Technical Report.</d-footnote> And concept vectors extracted from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human&ndash;AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote>
-	 Geva et al.'s key-value memory view of transformer feed-forward layers<d-footnote>Geva, M., Schuster, R., Berant, J. &amp; Levy, O. (2021). Transformer Feed-Forward Layers Are Key-Value Memories. EMNLP 2021.</d-footnote> has directly shaped architecture design at frontier labs.<d-footnote>Cheng, X., Zeng, W., Dai, D. et al. (2026). Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models.</d-footnote><d-footnote>Sadhukhan, R., Cao, S., Dong, H. et al. (2026). STEM: Scaling Transformers with Embedding Modules.</d-footnote>
+	 Geva et al.'s key-value memory view of transformer feed-forward layers<d-footnote>Geva, M., Schuster, R., Berant, J. &amp; Levy, O. (2021). Transformer Feed-Forward Layers Are Key-Value Memories. EMNLP 2021.</d-footnote> has directly shaped architecture design at frontier labs.<d-footnote>Cheng, X., Zeng, W., Dai, D. et al. (2026). Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models.</d-footnote><d-footnote>Sadhukhan, R., Cao, S., Dong, H. et al. (2026). STEM: Scaling Transformers with Embedding Modules.</d-footnote> These are just a few examples — the <a href="paper.pdf" target="_blank">paper</a> catalogs many more across data curation, self-explaining models, deployment decisions, and beyond.
   </div>
 
   <!-- ============================================ -->
   <h2 id="why-not-yet">Why Isn't Interpretability Actionable Yet?</h2>
 
-  <p>Several barriers reinforce a cycle where actionability isn't prioritized, methods lack validation, and deployment yields little feedback.</p>
+  <p>Several barriers reinforce a cycle where actionability isn't prioritized, methods lack validation, and deployment yields little feedback. We discuss these in detail in <a href="paper.pdf" target="_blank">Section 3 of the paper</a>; here's a summary.</p>
 
   <div class="barrier-row">
     <div class="barrier-block">
@@ -751,128 +783,105 @@ Different stakeholders have different capabilities and motivation. An interpreta
     </tbody>
   </table>
 
-  <aside>These actors rarely operate in isolation. A clinician's feedback about unreliable explanations may reveal failure modes to engineers. A policymaker's compliance requirements may drive developers toward specific mitigations.</aside>
-
   <!-- ============================================ -->
   <h2 id="what-actions">What Actions Does Interpretability Enable?</h2>
 
   <p>We classify actions by <em>what they affect</em>. Click each category to explore the specific actions interpretability unlocks.</p>
 
-  <!-- Interactive Actions Framework -->
-  <div class="actions-framework">
-    <!-- Tab buttons -->
-    <div class="actions-tabs" id="actions-tabs">
-      <button class="actions-tab active" data-tab="modify" id="tab-modify">
-        <span class="tab-icon">⚙️</span>
-        <span class="tab-label">Modify Model Output</span>
-      </button>
-      <button class="actions-tab" data-tab="deploy" id="tab-deploy">
-        <span class="tab-icon">🚀</span>
-        <span class="tab-label">Deployment &amp; Use</span>
-      </button>
-      <button class="actions-tab" data-tab="future" id="tab-future">
-        <span class="tab-icon">🔮</span>
-        <span class="tab-label">Shape Future Practice</span>
-      </button>
-    </div>
+  <!-- Expandable Actions Sections -->
+  <div class="actions-zippy-group">
 
-    <!-- Panel: Modify Model Output -->
-    <div class="actions-panel active" id="panel-modify">
-      <p class="panel-desc">Decisions that directly change model behavior—modifications to training data, inputs, weights, or internal computations. Primarily made by <strong>developers and researchers</strong> with access to model internals.</p>
-      <div class="action-items-grid">
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🗂</span>
-            <strong>Data Curation</strong>
+    <div class="actions-zippy" onclick="toggleZippy(this)">
+      <div class="zippy-header">
+        <span class="zippy-icon-left">⚙️</span>
+        <span class="zippy-title">Modify Model Output</span>
+        <span class="zippy-chevron">▼</span>
+      </div>
+      <div class="zippy-body">
+        <p class="panel-desc">Decisions that directly change model behavior—modifications to training data, inputs, weights, or internal computations. Primarily made by <strong>developers and researchers</strong> with access to model internals.</p>
+        <div class="action-items-grid">
+          <div class="action-item">
+            <div class="action-item-header">
+              <span class="action-item-icon">🗂</span>
+              <strong>Data Curation</strong>
+            </div>
+            <p>Influence functions trace model performance back to individual training examples, identifying which help and which hurt. Removing detrimental robot demonstrations achieved state-of-the-art results with only 33% of the original data.<d-footnote>Agia, C. et al. (2025). CUPID: Curating Data Your Robot Loves with Influence Functions. CoRL 2025.</d-footnote></p>
           </div>
-          <p>Influence functions trace model performance back to individual training examples, identifying which help and which hurt. Removing detrimental robot demonstrations achieved state-of-the-art results with only 33% of the original data.<d-footnote>Agia, C. et al. (2025). CUPID: Curating Data Your Robot Loves with Influence Functions. CoRL 2025.</d-footnote> Similar techniques detect mislabeled examples and expose training data artifacts.<d-footnote>Koh, P.W. &amp; Liang, P. (2017). Understanding Black-Box Predictions via Influence Functions. ICML 2017.</d-footnote><d-footnote>Han, X., Wallace, B.C. &amp; Tsvetkov, Y. (2020). Explaining Black Box Predictions and Unveiling Data Artifacts through Influence Functions. ACL 2020.</d-footnote></p>
-        </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">📥</span>
-            <strong>Model Input</strong>
+          <div class="action-item">
+            <div class="action-item-header">
+              <span class="action-item-icon">🎛</span>
+              <strong>Direct Control</strong>
+            </div>
+            <p>Model editing modifies weights to correct behaviors without full retraining<d-footnote>Meng, K. et al. (2022). Locating and Editing Factual Associations in GPT. NeurIPS 2022.</d-footnote>; runtime interventions steer activations along interpretable directions at inference time.<d-footnote>Li, K. et al. (2023). Inference-Time Intervention: Eliciting Truthful Answers from a Language Model. NeurIPS 2023.</d-footnote><d-footnote>Turner, A.M. et al. (2023). Steering Language Models with Activation Engineering.</d-footnote></p>
           </div>
-          <p>Interpretability can inform what inputs to provide. Building on the insight that transformers implement an internal optimizer for in-context learning<d-footnote>Akyürek, E. et al. (2023). What Learning Algorithm Is In-Context Learning? Investigations with Linear Models. ICLR 2023.</d-footnote>, influence functions have been used to identify which in-context demonstrations help versus harm performance.<d-footnote>Zhou, Z. et al. (2024). DETAIL: Task Demonstration Attribution for Interpretable In-Context Learning. NeurIPS 2024.</d-footnote></p>
         </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🧬</span>
-            <strong>Training Decisions</strong>
-          </div>
-          <p>Latent adversarial training perturbs internal representations to defend against unforeseen vulnerabilities, removing backdoors and improving robustness.<d-footnote>Casper, S. et al. (2024). Defending Against Unforeseen Failure Modes with Latent Adversarial Training. TMLR 2024.</d-footnote></p>
-        </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🎛</span>
-            <strong>Direct Control</strong>
-          </div>
-          <p>Interpretability can identify components responsible for specific behaviors, enabling targeted interventions. Model editing modifies weights to correct behaviors without full retraining<d-footnote>Meng, K. et al. (2022). Locating and Editing Factual Associations in GPT. NeurIPS 2022.</d-footnote><d-footnote>Fang, J. et al. (2025). AlphaEdit: Null-Space Constrained Model Editing for Language Models. ICLR 2025.</d-footnote>; runtime interventions steer activations along interpretable directions at inference time.<d-footnote>Li, K. et al. (2023). Inference-Time Intervention: Eliciting Truthful Answers from a Language Model. NeurIPS 2023.</d-footnote><d-footnote>Turner, A.M. et al. (2023). Steering Language Models with Activation Engineering.</d-footnote> Concept bottleneck models introduce human-defined concepts as intermediate representations, enabling expert-guided control.<d-footnote>Koh, P.W. et al. (2020). Concept Bottleneck Models. ICML 2020.</d-footnote></p>
-        </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🛡</span>
-            <strong>Safety</strong>
-          </div>
-          <p>Interpretability supports removing or suppressing unsafe behaviors encoded in model weights. Concept erasure<d-footnote>Ravfogel, S. et al. (2020). Null It Out: Guarding Protected Attributes by Iterative Nullspace Projection. ACL 2020.</d-footnote> and machine unlearning<d-footnote>Gandikota, R. et al. (2024). Unified Concept Editing in Diffusion Models. WACV 2024.</d-footnote><d-footnote>Ashuach, T. et al. (2025). REVS: Unlearning Sensitive Information in Language Models via Rank Editing in the Vocabulary Space.</d-footnote> provide principled approaches for mitigating privacy risks and removing unwanted behaviors by identifying and neutralizing specific learned associations.</p>
-        </div>
+        <p class="panel-aside">These are just two examples — we cover additional actions including model input selection, training decisions, safety interventions, and more in <a href="paper.pdf" target="_blank">Section 5 of the paper</a>.</p>
       </div>
     </div>
 
-    <!-- Panel: Deployment & Use -->
-    <div class="actions-panel" id="panel-deploy">
-      <p class="panel-desc">These change what <strong>humans do with model predictions</strong>—when to trust them, when to override them, and how to integrate them into workflows. Actions here are taken by end users, domain experts, and deployment engineers.</p>
-      <div class="action-items-grid">
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🩺</span>
-            <strong>End User Decisions</strong>
+    <div class="actions-zippy" onclick="toggleZippy(this)">
+      <div class="zippy-header">
+        <span class="zippy-icon-left">🚀</span>
+        <span class="zippy-title">Deployment &amp; Use</span>
+        <span class="zippy-chevron">▼</span>
+      </div>
+      <div class="zippy-body">
+        <p class="panel-desc">These change what <strong>humans do with model predictions</strong>—when to trust them, when to override them, and how to integrate them into workflows. Actions here are taken by end users, domain experts, and deployment engineers.</p>
+        <div class="action-items-grid">
+          <div class="action-item">
+            <div class="action-item-header">
+              <span class="action-item-icon">🩺</span>
+              <strong>End User Decisions</strong>
+            </div>
+            <p>Neuro-symbolic systems combining LLMs with rule-based expert systems provide the transparency radiologists need to confidently use AI while maintaining oversight.<d-footnote>Prenosil, G.A. et al. (2025). Neuro-Symbolic AI for Auditable Cognitive Information Extraction from Medical Reports. Communications Medicine.</d-footnote> Uncertainty estimation from internal representations enables users to detect potential errors and decide when to trust model outputs.<d-footnote>Kadavath, S. et al. (2022). Language Models (Mostly) Know What They Know.</d-footnote></p>
           </div>
-          <p>Neuro-symbolic systems combining LLMs with rule-based expert systems provide the transparency radiologists need to confidently use AI while maintaining oversight.<d-footnote>Prenosil, G.A. et al. (2025). Neuro-Symbolic AI for Auditable Cognitive Information Extraction from Medical Reports. Communications Medicine.</d-footnote> Activation patching can reveal when models over-rely on patient demographics in clinical predictions.<d-footnote>Ahsan, H. et al. (2025). Elucidating Mechanisms of Demographic Bias in LLMs for Healthcare. EMNLP Findings 2025.</d-footnote> Uncertainty estimation from internal representations enables users to detect potential errors and decide when to trust model outputs.<d-footnote>Kadavath, S. et al. (2022). Language Models (Mostly) Know What They Know.</d-footnote></p>
-        </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🔀</span>
-            <strong>Deployment Decisions</strong>
+          <div class="action-item">
+            <div class="action-item-header">
+              <span class="action-item-icon">🔀</span>
+              <strong>Deployment Decisions</strong>
+            </div>
+            <p>Internal mechanisms can identify out-of-distribution failures<d-footnote>Huang, J. et al. (2025). Internal Causal Mechanisms Robustly Predict Language Model Out-of-Distribution Behaviors.</d-footnote> and predict errors on unseen distributions<d-footnote>Li, V.R. et al. (2025). Can Interpretation Predict Behavior on Unseen Data?</d-footnote>, supporting routing decisions—whether to return a model's answer or escalate to alternatives.</p>
           </div>
-          <p>Interpretability enables predicting where models will fail. Internal mechanisms can identify out-of-distribution failures<d-footnote>Huang, J. et al. (2025). Internal Causal Mechanisms Robustly Predict Language Model Out-of-Distribution Behaviors.</d-footnote> and predict errors on unseen distributions<d-footnote>Li, V.R. et al. (2025). Can Interpretation Predict Behavior on Unseen Data?</d-footnote>, supporting routing decisions—whether to return a model's answer or escalate to alternatives. Uncertainty-based routing has achieved up to 98% cost reduction while matching GPT-4 performance.<d-footnote>Chen, L. et al. (2024). FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance. TMLR 2024.</d-footnote></p>
         </div>
+        <p class="panel-aside">More examples — including uncertainty-based routing and backdoor detection — in <a href="paper.pdf" target="_blank">Section 5 of the paper</a>.</p>
       </div>
     </div>
 
-    <!-- Panel: Shape Future Practice -->
-    <div class="actions-panel" id="panel-future">
-      <p class="panel-desc">Beyond immediate interventions, interpretability informs how the field <strong>builds and governs future systems</strong>. This has longer-term, broader impact across policy, science, and architecture.</p>
-      <div class="action-items-grid">
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">📜</span>
-            <strong>Policy &amp; Regulation</strong>
+    <div class="actions-zippy" onclick="toggleZippy(this)">
+      <div class="zippy-header">
+        <span class="zippy-icon-left">🔮</span>
+        <span class="zippy-title">Shape Future Practice</span>
+        <span class="zippy-chevron">▼</span>
+      </div>
+      <div class="zippy-body">
+        <p class="panel-desc">Beyond immediate interventions, interpretability informs how the field <strong>builds and governs future systems</strong>. This has longer-term, broader impact across policy, science, and architecture.</p>
+        <div class="action-items-grid">
+          <div class="action-item">
+            <div class="action-item-header">
+              <span class="action-item-icon">🧠</span>
+              <strong>Learning from Superhuman Models</strong>
+            </div>
+            <p>When models exceed human expertise, interpretability becomes a mechanism for transferring knowledge from AI back to humans. Concept vectors from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human–AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote></p>
           </div>
-          <p>Interpretability requirements are increasingly embedded in regulation. The EU AI Act mandates explainability for high-risk AI systems<d-footnote>ArtificialIntelligenceAct.eu (2025). Article 86: Right to Explanation of Individual Decision-Making.</d-footnote>, and GDPR restricts automated decision-making with significant effects, requiring safeguards including the right to human intervention.<d-footnote>European Union (2016). GDPR, Article 22: Automated Individual Decision-Making, Including Profiling.</d-footnote> A central open challenge is whether interpretability can enable credible verification of the absence of dangerous mechanisms, even with limited access to proprietary models.</p>
-        </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🧠</span>
-            <strong>Learning from Superhuman Models</strong>
+          <div class="action-item">
+            <div class="action-item-header">
+              <span class="action-item-icon">🏗</span>
+              <strong>Development of Future Models</strong>
+            </div>
+            <p>Interpretability can shift architecture design from trial-and-error toward principled engineering. The discovery of induction heads in Transformers<d-footnote>Olsson, C. et al. (2022). In-Context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> provided a mechanism for in-context learning that traditional state-space models lacked, directly influencing the selective state-space design of the Mamba architecture.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. COLM 2024.</d-footnote></p>
           </div>
-          <p>When models exceed human expertise, interpretability becomes a mechanism for transferring knowledge from AI back to humans. Concept vectors from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human–AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote> Similar approaches applied to biological foundation models have identified scientifically relevant structure in model representations.<d-footnote>Gorton, L. et al. (2025). Interpreting Evo 2: Arc Institute's Next-Generation Genomic Foundation Model. Goodfire Research.</d-footnote></p>
         </div>
-        <div class="action-item">
-          <div class="action-item-header">
-            <span class="action-item-icon">🏗</span>
-            <strong>Development of Future Models</strong>
-          </div>
-          <p>Interpretability can shift architecture design from trial-and-error toward principled engineering. The discovery of induction heads in Transformers<d-footnote>Olsson, C. et al. (2022). In-Context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> provided a mechanism for in-context learning that traditional state-space models lacked, directly influencing the selective state-space design of the Mamba architecture.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. COLM 2024.</d-footnote></p>
-        </div>
+        <p class="panel-aside">We also discuss policy and regulation implications — including the EU AI Act and GDPR — in <a href="paper.pdf" target="_blank">Section 5 of the paper</a>.</p>
       </div>
     </div>
+
   </div>
 
   <!-- ============================================ -->
   <h2 id="eval">How to Evaluate Actionability</h2>
 
   <p>
-    Now to a core part of creating actionable interpretability work: being able to evaluate whether it's actually actionable. Current practice often evaluates interpretability methods against each other—"grading on a curve." This is insufficient. We need metrics that measure whether insights actually enable better decisions and outcomes. Here are the criteria we propose (see the paper for more details):
+    Now to a core part of creating actionable interpretability work: being able to evaluate whether it's actually actionable. Current practice often evaluates interpretability methods against each other—"grading on a curve." This is insufficient. We need metrics that measure whether insights actually enable better decisions and outcomes. Here are the criteria we propose — we discuss each in detail, including how to measure them in practice, in <a href="paper.pdf" target="_blank">Section 6 of the paper</a>:
   </p>
 
   <div class="eval-grid">
@@ -932,10 +941,8 @@ Different stakeholders have different capabilities and motivation. An interpreta
     What we <em>are</em> saying is that tracking actionability as a yardstick will strengthen the field's impact, hold methods to higher standards, and provide evidence that findings reflect genuine model behavior rather than analysis artifacts. Methodological novelty and application demonstration are not at odds—grounding findings in real-world actions provides stronger evidence that the interpretability insights are real.
   </p>
 
-  <aside>It would be premature to discount actionable interpretability when the field is still at an early stage compared to other scientific disciplines, and our objects of study have only emerged in their current form in the past five years.</aside>
-
   <p>
-    The burden now falls on the research community: to reward actionable contributions alongside explanatory depth, to establish evaluation criteria that track the utility of interpretability insights, and to build infrastructure that connects understanding to impact.<d-footnote>Haklay et al. (2025). 1st Actionable Interpretability Workshop at ICML 2025.</d-footnote>
+    The burden now falls on the research community: to reward actionable contributions alongside explanatory depth, to establish evaluation criteria that track the utility of interpretability insights, and to build infrastructure that connects understanding to impact.<d-footnote>Haklay et al. (2025). 1st Actionable Interpretability Workshop at ICML 2025.</d-footnote> We discuss several counter-arguments — including whether safety should be the only actionable goal, and whether there's decisive evidence interpretability methods outperform alternatives — in <a href="paper.pdf" target="_blank">Section 7 of the paper</a>.
   </p>
 
   <!-- ============================================ -->
@@ -1027,9 +1034,12 @@ Different stakeholders have different capabilities and motivation. An interpreta
     </div>
   </div>
 
-  <p>
-    <em>This blog post summarizes our position paper "Interpretability Can Be Actionable." For the full analysis, framework details, and comprehensive references, please see <a href="paper.pdf" target="_blank">the paper</a>.</em>
-  </p>
+  <div class="paper-cta">
+    <div class="paper-cta-content">
+      <strong>This post covers the key ideas — the paper has the full picture.</strong>
+      <a href="paper.pdf" target="_blank" class="paper-cta-button">📄 Read the paper</a>
+    </div>
+  </div>
 
 </d-article>
 
@@ -1063,20 +1073,19 @@ Different stakeholders have different capabilities and motivation. An interpreta
   }
 </script>
 
-<!-- ACTIONS TABS -->
+<!-- ACTIONS ZIPPIES -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var tabs = document.querySelectorAll('.actions-tab');
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        tabs.forEach(function(t) { t.classList.remove('active'); });
-        document.querySelectorAll('.actions-panel').forEach(function(p) { p.classList.remove('active'); });
-        tab.classList.add('active');
-        var panel = document.getElementById('panel-' + tab.getAttribute('data-tab'));
-        if (panel) panel.classList.add('active');
-      });
+  function toggleZippy(el) {
+    var wasExpanded = el.classList.contains('expanded');
+    // Collapse all zippies first
+    document.querySelectorAll('.actions-zippy.expanded').forEach(function(z) {
+      z.classList.remove('expanded');
     });
-  });
+    // Toggle the clicked one (if it wasn't already open)
+    if (!wasExpanded) {
+      el.classList.add('expanded');
+    }
+  }
 </script>
 
 <!-- TOC HIGHLIGHTING + DOI REMOVAL -->
