@@ -31,7 +31,11 @@
     /* ── TOC Sidebar (from index 10) ── */
     d-article {
       contain: none;
-      overflow-x: visible;
+      overflow-x: hidden;
+    }
+    d-article > * {
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .toc-wrapper {
@@ -101,6 +105,11 @@
       padding-bottom: 0.4rem;
     }
     d-article h3 { margin-top: 2rem; margin-bottom: 0.5rem; }
+    d-appendix h3 {
+      grid-column: text !important;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
     d-article p { line-height: 1.8; margin-bottom: 1rem; }
 
     /* ── Checklist card ── */
@@ -182,7 +191,7 @@
     /* ── Interactive Domain cards (from index 10) ── */
     .domains-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
       gap: 16px;
       margin: 1.5rem 0 2rem;
     }
@@ -194,8 +203,9 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .domain-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-    .domain-card .domain-icon { font-size: 1.6rem; margin-bottom: 8px; }
-    .domain-card h4 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
+    .domain-card .domain-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .domain-card .domain-icon { font-size: 1.6rem; }
+    .domain-card h4 { font-size: 0.95rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px; }
     .domain-card p { font-size: 0.88rem; color: var(--color-text-light); line-height: 1.5; margin: 0; }
 
     .domain-card { background: #f9fafb; border-color: #e5e7eb; }
@@ -213,6 +223,7 @@
     /* ── Stakeholder table ── */
     .stakeholder-table {
       width: 100%;
+      max-width: 100%;
       border-collapse: separate;
       border-spacing: 0;
       margin: 1.25rem 0;
@@ -220,6 +231,8 @@
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid #e5e7eb;
+      table-layout: fixed;
+      word-wrap: break-word;
     }
     .stakeholder-table thead { background: #2563eb; color: #fff; }
     .stakeholder-table th { padding: 0.6rem 0.8rem; text-align: left; font-weight: 600; }
@@ -249,25 +262,26 @@
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
       margin: 1.25rem 0;
+      max-width: 100%;
+      box-sizing: border-box;
     }
     .eval-card {
       padding: 0.85rem 1rem;
       border-radius: 8px;
       background: #f9fafb;
       border-left: 3px solid #2563eb;
+      min-width: 0;
     }
-    .eval-card h4 { margin: 0 0 0.2rem; font-size: 0.92rem; font-weight: 700; }
+    .eval-card h4 { margin: 0 0 0.2rem; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
     .eval-card p { margin: 0; font-size: 0.85rem; color: #6b7280; line-height: 1.45; }
-    .eval-card .eval-category {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-bottom: 6px;
-    }
+
+    /* Eval legend */
+    .eval-legend { display: flex; gap: 16px; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .eval-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .eval-legend-swatch { width: 14px; height: 14px; border-radius: 3px; border-left: 3px solid; }
+    .eval-legend-swatch.swatch-modify { background: #eff6ff; border-left-color: #2563eb; }
+    .eval-legend-swatch.swatch-deploy { background: #f0fdf4; border-left-color: #16a34a; }
+    .eval-legend-swatch.swatch-future { background: #faf5ff; border-left-color: #9333ea; }
 
     /* Actions that Modify Outputs — muted blue */
     .eval-card.eval-modify { background: #f7f9fc; border-left-color: #6b8fc7; }
@@ -296,7 +310,12 @@
       margin: 1.5rem 0;
       font-size: 0.95rem;
       line-height: 1.65;
+      box-sizing: border-box;
     }
+    .highlight-block h4 { margin: 0 0 0.5rem; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .highlight-block ul { list-style: none; padding-left: 0; margin: 0; }
+    .highlight-block ul li { padding-left: 1.6em; position: relative; margin-bottom: 0.4rem; }
+    .highlight-block ul li::before { content: "💡"; position: absolute; left: 0; }
     .highlight-block.yellow { background: #fdfcf3; border-left: 4px solid #d4b44a; }
     .highlight-block strong { display: block; margin-bottom: 4px; }
 
@@ -389,7 +408,7 @@
     }
     .action-items-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
       gap: 14px;
     }
     .action-item {
@@ -405,7 +424,9 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 6px;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .action-item-icon { font-size: 1.1rem; }
     .action-item p {
@@ -413,6 +434,20 @@
       color: var(--color-text-light);
       line-height: 1.55;
       margin: 0;
+    }
+    .action-item .action-list {
+      font-size: 0.84rem;
+      color: var(--color-text-light);
+      line-height: 1.55;
+      margin: 6px 0 0 0;
+      padding-left: 1.2em;
+      list-style: disc;
+    }
+    .action-item .action-list li {
+      margin-bottom: 4px;
+    }
+    .action-item .action-list li:last-child {
+      margin-bottom: 0;
     }
     .panel-aside {
       margin-top: 16px;
@@ -600,7 +635,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
       This growth is driven by the intuition that if we understand how models work, we should be able to make them safer, more reliable, and better aligned with what we actually want.
     </p>
     <p style="max-width: 65%;">
-      But here's the uncomfortable truth: <strong>most of this work hasn't translated into things used outside of interpretability research itself</strong>.  Insights rarely inform changes to models, training procedures, deployment decisions, or policy. Papers get published, methods get cited—but predominantly in a conceptual way. Most citations don't credit interpretability work for changes to training, architecture, or evaluation.<d-footnote>Mosbach et al. (2024) conducted an extensive analysis showing that while interpretability papers are frequently cited, their practical influence on downstream ML work remains limited.</d-footnote>
+      But here's the uncomfortable truth: <strong>most of this work hasn't translated into things used outside of interpretability research itself</strong>. Insights rarely inform changes to models, training procedures, deployment decisions, or policy. Papers get published, methods get cited—but predominantly in a conceptual way. Most citations don't credit interpretability work for changes to training, architecture, or evaluation.<d-footnote>Mosbach et al. (2024) conducted an extensive analysis showing that while interpretability papers are frequently cited, their practical influence on downstream ML work remains limited.</d-footnote>
     </p>
     <p style="max-width: 65%;">
       This has motivated growing calls to focus on clearly demonstrable outcomes beyond "understanding" itself. <strong>We argue that what is missing is not methods, but evaluation criteria</strong>: a shared framework for determining when interpretability research is successful from a practical, decision-oriented perspective.
@@ -656,10 +691,19 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   </p>
 
   <div class="highlight-block yellow">
-    <strong>💡 What high actionability looks like in practice</strong>
-     The discovery of induction heads in Transformers<d-footnote>Olsson, C. et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> directly influenced the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2023). Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</d-footnote> ReFT was directly inspired by interpretability findings about how models represent concepts.<d-footnote>Wu, Z. et al. (2024). ReFT: Representation Finetuning for Language Models. NeurIPS 2024.</d-footnote> Anthropic used internal activation analysis to audit Claude's safety behaviors.<d-footnote>Anthropic (2025). System Card: Claude Sonnet 4.5. Technical Report.</d-footnote> And concept vectors extracted from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human&ndash;AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote>
-	 Geva et al.'s key-value memory view of transformer feed-forward layers<d-footnote>Geva, M., Schuster, R., Berant, J. &amp; Levy, O. (2021). Transformer Feed-Forward Layers Are Key-Value Memories. EMNLP 2021.</d-footnote> has directly shaped architecture design at frontier labs.<d-footnote>Cheng, X., Zeng, W., Dai, D. et al. (2026). Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models.</d-footnote><d-footnote>Sadhukhan, R., Cao, S., Dong, H. et al. (2026). STEM: Scaling Transformers with Embedding Modules.</d-footnote> These are just a few examples — the <a href="paper.pdf" target="_blank">paper</a> catalogs many more across data curation, self-explaining models, deployment decisions, and beyond.
+    <h4>What high actionability looks like in practice</h4>
+    <ul>
+      <li>The discovery of <b>induction heads</b> in Transformers<d-footnote>Olsson, C. et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.</d-footnote> directly influenced the selective state-space design of Mamba.<d-footnote>Gu, A. &amp; Dao, T. (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</d-footnote></li>
+      <li><b>ReFT</b> was directly inspired by interpretability findings about how models represent concepts.<d-footnote>Wu, Z. et al. (2024). ReFT: Representation Finetuning for Language Models. NeurIPS 2024.</d-footnote></li>
+      <li>Anthropic used internal <b>activation analysis</b> to audit Claude's safety behaviors.<d-footnote>Anthropic (2025). System Card: Claude Sonnet 4.5. Technical Report.</d-footnote></li>
+      <li><b>Concept vectors</b> extracted from AlphaZero surfaced novel chess strategies that human grandmasters could learn from.<d-footnote>Schut, L. et al. (2025). Bridging the Human&ndash;AI Knowledge Gap Through Concept Discovery and Transfer in AlphaZero. PNAS.</d-footnote></li>
+      <li>Geva et al.'s <b>key-value memory view</b> of transformer feed-forward layers<d-footnote>Geva, M., Schuster, R., Berant, J. &amp; Levy, O. (2021). Transformer Feed-Forward Layers Are Key-Value Memories. EMNLP 2021.</d-footnote> has directly shaped architecture design at frontier labs.<d-footnote>Cheng, X., Zeng, W., Dai, D. et al. (2026). Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models.</d-footnote><d-footnote>Sadhukhan, R., Cao, S., Dong, H. et al. (2026). STEM: Scaling Transformers with Embedding Modules.</d-footnote></li>
+    </ul>
   </div>
+
+  <p>
+    For more examples, see the <a href="https://actionable-interpretability.github.io/posters/">posters from the ICML 2025 workshop</a>.
+  </p>
 
   <!-- ============================================ -->
   <h2 id="why-not-yet">Why Isn't Interpretability Actionable Yet?</h2>
@@ -697,45 +741,45 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   <!-- Interactive Five Domains figure (from index 10) -->
   <div class="domains-grid">
     <div class="domain-card">
-      <div class="domain-icon">🧩</div>
-      <h4>Problems Scaling Won't Fix</h4>
+      <div class="domain-header"><div class="domain-icon">🧩</div>
+      <h4>Problems Scaling Won't Fix</h4></div>
       <p>
-	  Certain failure modes persist or even worsen with model and data scale, including hallucinations, catastrophic forgetting, biases and adversarial brittleness.
+	  Certain failure modes persist or even worsen with model and data scale, including hallucinations, catastrophic forgetting, biases, and adversarial brittleness.
 		The persistence of these failures across model scales suggests they are fundamental to our current modeling paradigm rather than due to limited capacity.
 		Interpretability offers a path forward precisely because it can identify <em>why</em> models fail.
 	  </p>
     </div>
     <div class="domain-card">
-      <div class="domain-icon">🎯</div>
-      <h4>Alignment</h4>
+      <div class="domain-header"><div class="domain-icon">🎯</div>
+      <h4>Alignment</h4></div>
       <p>
 	  As AI systems become more capable, ensuring they behave as intended becomes more critical and more difficult.
 	  Alignment today still relies on fine-tuning and data curation rather than understanding-driven interventions, but as AI progresses, verifying that AI goals match human goals will shift from aspiration to necessity.
 	  </p>
     </div>
     <div class="domain-card">
-      <div class="domain-icon">🔧</div>
-      <h4>Surgical Interventions</h4>
+      <div class="domain-header"><div class="domain-icon">🔧</div>
+      <h4>Surgical Interventions</h4></div>
       <p>
 		Retraining a flawed model is expensive and risks introducing other unexpected outcomes.
 		Interpretability enables targeted modifications; identifying components responsible for unwanted behaviors allows surgical fixes while preserving other functionality.
 	  </p>
     </div>
     <div class="domain-card">
-      <div class="domain-icon">🏗</div>
-      <h4>Architecture Design</h4>
+      <div class="domain-header"><div class="domain-icon">🏗</div>
+      <h4>Architecture Design</h4></div>
       <p>
-		Current improvements emerge largely through trial and error---an inefficient, opaque process where success may not scale or transfer to new domains.
+		Current improvements emerge largely through trial and error&mdash;an inefficient, opaque process where success may not scale or transfer to new domains.
 		Interpretability could accelerate progress by narrowing the space of plausible architecture modifications, reducing both labor and compute required.
 	  </p>
     </div>
     <div class="domain-card">
-      <div class="domain-icon">🔍</div>
-      <h4>Meaningful Explanations</h4>
+      <div class="domain-header"><div class="domain-icon">🔍</div>
+      <h4>Meaningful Explanations</h4></div>
       <p>
 	  The most natural role of interpretability is explaining model behavior, yet translating internal signals into meaningful concepts remains a critical bottleneck.
 	  In high-stakes domains like healthcare, a radiologist needs to know if an AI-assisted diagnosis depends on clinically relevant features, not which pixels activate;
-	  Automated methods that translate technical explanations into domain-appropriate, <strong>actionable</strong> concepts could unlock interpretability's core promise.
+	  automated methods that translate technical explanations into domain-appropriate, <strong>actionable</strong> concepts could unlock interpretability's core promise.
 	  </p>
     </div>
   </div>
@@ -744,7 +788,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   <h2 id="who-acts">Who Takes the “Action” in “Actionable”?</h2>
 
   <p>
-Different stakeholders have different capabilities and motivation. An interpretability work will become more actionable if it is explicit about its intended audience and the decisions it aims to support.  </p>
+Different stakeholders have different capabilities and motivation. An interpretability work becomes more actionable if it is explicit about its intended audience and the decisions it aims to support.</p>
 
   <table class="stakeholder-table">
     <thead>
@@ -884,44 +928,42 @@ Different stakeholders have different capabilities and motivation. An interpreta
     Now to a core part of creating actionable interpretability work: being able to evaluate whether it's actually actionable. Current practice often evaluates interpretability methods against each other—"grading on a curve." This is insufficient. We need metrics that measure whether insights actually enable better decisions and outcomes. Here are the criteria we propose — we discuss each in detail, including how to measure them in practice, in <a href="paper.pdf" target="_blank">Section 6 of the paper</a>:
   </p>
 
+  <div class="eval-legend">
+    <div class="eval-legend-item"><div class="eval-legend-swatch swatch-modify"></div> Modify Outputs</div>
+    <div class="eval-legend-item"><div class="eval-legend-swatch swatch-deploy"></div> Deployment</div>
+    <div class="eval-legend-item"><div class="eval-legend-swatch swatch-future"></div> Future Practices</div>
+  </div>
+
   <div class="eval-grid">
     <div class="eval-card eval-modify">
-      <span class="eval-category">Modify Outputs</span>
       <h4>Comparative Utility</h4>
       <p>Does the interpretability-based method outperform standard baselines like prompting or fine-tuning? Actionability means marginal leverage over simpler methods.</p>
     </div>
     <div class="eval-card eval-modify">
-      <span class="eval-category">Modify Outputs</span>
       <h4>Mechanistic Faithfulness</h4>
       <p>Does intervening on identified components produce predicted changes—altering target behavior while leaving unrelated behavior intact?</p>
     </div>
     <div class="eval-card eval-modify">
-      <span class="eval-category">Modify Outputs</span>
       <h4>Generalization</h4>
       <p>Does the insight hold across seeds, perturbations, architectures, and scales without requiring rediscovery?</p>
     </div>
     <div class="eval-card eval-modify">
-      <span class="eval-category">Modify Outputs</span>
       <h4>Specificity</h4>
       <p>When you intervene on an identified component, does it affect only the targeted behavior—or does it also disrupt other capabilities? Broad side effects signal that the finding is entangled, not specific.</p>
     </div>
     <div class="eval-card eval-deploy">
-      <span class="eval-category">Deployment</span>
       <h4>Task Enhancement</h4>
       <p>The most direct user-facing test: do explanations improve how humans perform the task the model supports — their accuracy, speed, or ability to know when to trust or override the model? This typically requires human-subject evaluations, and prior work suggests the bar is harder to clear than it sounds.</p>
     </div>
     <div class="eval-card eval-deploy">
-      <span class="eval-category">Deployment</span>
       <h4>Understandability</h4>
       <p>Can the target audience actually understand the explanation? A technically faithful explanation is useless if a clinician or policymaker can't make sense of it. Understandability is orthogonal to correctness — an explanation can accurately reflect model behavior and still be completely unusable.</p>
     </div>
     <div class="eval-card eval-deploy">
-      <span class="eval-category">Deployment</span>
       <h4>Reliability</h4>
       <p>Are explanations stable across random seeds and minor perturbations? Even explanations that are faithful and understandable become useless if they fluctuate unpredictably.</p>
     </div>
     <div class="eval-card eval-future">
-      <span class="eval-category">Future Practices</span>
       <h4>Governance Utility</h4>
       <p>In a policy context, interpretability isn't a scientific diagnostic — it's an institutional lever. Does the method enable practical governance actions: safety audits, compliance verification, or detecting dangerous mechanisms? Does it reduce monitoring costs compared to blunt instruments like pausing deployment? Can regulators and safety teams actually use it?</p>
     </div>
@@ -1045,15 +1087,15 @@ Different stakeholders have different capabilities and motivation. An interpreta
 
 <d-appendix>
   <h3>Citation</h3>
-  <p>For citation:</p>
-  <pre style="background: #f3f4f6; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;">@article{orgad2025actionable,
+  <!-- <p>For citation:</p> -->
+  <pre style="background: #f3f4f6; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;">@article{orgad2026actionable,
   title     = {Interpretability Can Be Actionable},
   author    = {Orgad, Hadas and Barez, Fazl and Haklay, Tal
                and Lee, Isabelle and Mosbach, Marius
                and Reusch, Anja and Saphra, Naomi
                and Wallace, Byron C. and Wiegreffe, Sarah
                and Wong, Eric and Tenney, Ian and Geva, Mor},
-  year      = {2025},
+  year      = {2026},
   url       = {https://actionable-interpretability.github.io}
 }</pre>
 </d-appendix>
