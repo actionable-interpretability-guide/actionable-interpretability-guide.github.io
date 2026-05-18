@@ -340,6 +340,23 @@
       color: var(--color-text-light);
     }
 
+    /* ── arXiv badge ── */
+    .arxiv-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #b31b1b;
+      color: #fff !important;
+      text-decoration: none;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .arxiv-badge:hover { background: #8f1414; }
+    .arxiv-badge svg { flex-shrink: 0; }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .domains-grid, .dimensions-container, .eval-grid { grid-template-columns: 1fr; }
@@ -535,6 +552,12 @@
       line-height: 1.6;
       margin: 0 0 1rem;
     }
+    .paper-cta-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
     .paper-cta-button {
       display: inline-block;
       padding: 0.55rem 1.4rem;
@@ -547,6 +570,20 @@
       transition: background 0.2s ease;
     }
     .paper-cta-button:hover { background: #1d4ed8; }
+    .paper-cta-arxiv {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.55rem 1.2rem;
+      background: #b31b1b;
+      color: #fff !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .paper-cta-arxiv:hover { background: #8f1414; }
 
     html { scroll-behavior: smooth; }
     @media print { .toc-wrapper { display: none; } }
@@ -557,7 +594,8 @@
 
 <!-- TABLE OF CONTENTS - fixed sidebar, appears on scroll -->
 <nav class="toc-wrapper" id="toc">
-  <a href="paper.pdf" target="_blank" style="display: flex; align-items: center; gap: 6px; padding: 8px 10px; margin-bottom: 12px; background: var(--color-highlight-blue); border-radius: 8px; border-left: none; text-decoration: none; color: #1e40af; font-size: 0.85rem; font-weight: 600; transition: background 0.2s ease;" onmouseover="this.style.background='#bfdbfe'" onmouseout="this.style.background='var(--color-highlight-blue)'">📄 Read the paper</a>
+  <a href="paper.pdf" target="_blank" style="display: flex; align-items: center; gap: 6px; padding: 8px 10px; margin-bottom: 6px; background: var(--color-highlight-blue); border-radius: 8px; border-left: none; text-decoration: none; color: #1e40af; font-size: 0.85rem; font-weight: 600; transition: background 0.2s ease;" onmouseover="this.style.background='#bfdbfe'" onmouseout="this.style.background='var(--color-highlight-blue)'">📄 Read the paper</a>
+  <a href="https://arxiv.org/abs/2605.11161" target="_blank" style="display: flex; align-items: center; gap: 6px; padding: 8px 10px; margin-bottom: 12px; background: #fde8e8; border-radius: 8px; border-left: none; text-decoration: none; color: #b31b1b; font-size: 0.85rem; font-weight: 600; transition: background 0.2s ease;" onmouseover="this.style.background='#fcc9c9'" onmouseout="this.style.background='#fde8e8'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg> arXiv</a>
   <div class="toc-title">Contents</div>
   <a href="#the-problem">The Problem</a>
   <a href="#defining-actionable">Defining Actionable Interpretability</a>
@@ -609,6 +647,10 @@
 
   <div class="author-block">
     <span class="meta-item">📄 Blog companion to: <a href="paper.pdf" target="_blank">&ldquo;Interpretability Can Be Actionable&rdquo; [PDF]</a></span>
+    <a href="https://arxiv.org/abs/2605.11161" target="_blank" class="arxiv-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+      arXiv:2605.11161
+    </a>
     <span class="meta-item">📅 February 2026</span>
   </div>
 
@@ -733,8 +775,8 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
     <div class="barrier-block">
       <h4>🚀 Deployment Challenges</h4>
       <p>
-		Employing interpretability methods requires deep expertise in model internals and specialized libraries—a barrier that keeps most practitioners from adopting them, especially when simpler alternatives exist. 
-		Additionally, most techniques assume open access to weights and activations, creating a fundamental tension: interpretability is most urgently needed for powerful frontier models, yet these are precisely the models that remain proprietary and resistant to such analysis.
+	  Employing interpretability methods requires deep expertise in model internals and specialized libraries—a barrier that keeps most practitioners from adopting them, especially when simpler alternatives exist. 
+	  Additionally, most techniques assume open access to weights and activations, creating a fundamental tension: interpretability is most urgently needed for powerful frontier models, yet these are precisely the models that remain proprietary and resistant to such analysis.
 	  </p>
     </div>
   </div>
@@ -797,7 +839,7 @@ Interpretability has grown rapidly as a research area, but most of it hasn't led
   </div>
 
   <!-- ============================================ -->
-  <h2 id="who-acts">Who Takes the “Action” in “Actionable”?</h2>
+  <h2 id="who-acts">Who Takes the "Action" in "Actionable"?</h2>
 
   <p>
 Different stakeholders have different capabilities and motivation. An interpretability work becomes more actionable if it is explicit about its intended audience and the decisions it aims to support.</p>
@@ -1117,7 +1159,13 @@ Different stakeholders have different capabilities and motivation. An interpreta
   <div class="paper-cta">
     <div class="paper-cta-content">
       <strong>This post covers the key ideas — the paper has the full picture.</strong>
-      <a href="paper.pdf" target="_blank" class="paper-cta-button">📄 Read the paper</a>
+      <div class="paper-cta-links">
+        <a href="paper.pdf" target="_blank" class="paper-cta-button">📄 Read the paper</a>
+        <a href="https://arxiv.org/abs/2605.11161" target="_blank" class="paper-cta-arxiv">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+          arXiv
+        </a>
+      </div>
     </div>
   </div>
 
@@ -1252,6 +1300,10 @@ Different stakeholders have different capabilities and motivation. An interpreta
     sections.forEach(function(s) { observer.observe(s.el); });
   });
 </script>
+
+
+<script data-goatcounter="https://actionable-interp.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
